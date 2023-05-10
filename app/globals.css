@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* apply tailwind directives to the body element */
+body {
+  @apply bg-gray-100;
+}
