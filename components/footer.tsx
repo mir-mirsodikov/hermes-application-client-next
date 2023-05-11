@@ -1,7 +1,7 @@
 export function Footer() {
   return (
     <footer className='flex p-4 justify-center'>
-      <p className='text-gray-500 text-sm'>
+      <p className='text-gray-500 dark:text-gray-400 text-sm'>
         Built by <a href='https://github.com/mir-mirsodikov' className='underline underline-offset-2 decoration-2'>mir-mirsodikov</a> &middot;{' '}
         Hosted on <a href='https://vercel.com' className='underline underline-offset-2 decoration-2'>Vercel</a> &middot;{' '}
         Graphics by <a href='https://popsy.co' className='underline underline-offset-2 decoration-2'>Popsy</a> &middot;{' '}
