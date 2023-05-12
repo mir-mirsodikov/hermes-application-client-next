@@ -20,10 +20,10 @@ export default function RootLayout({
       <body
         className={
           montserrat.className +
-          ` flex flex-col justify-between h-screen bg-gray-100 dark:bg-gray-800`
+          `transition duration-300 ease-in-out flex flex-col justify-between h-screen dark:bg-primary-dark bg-primary-light`
         }
       >
-        <div className="">
+        <div className="container">
           <NavigationBar
             {...{
               updateTheme: () => {

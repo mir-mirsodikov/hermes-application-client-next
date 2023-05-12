@@ -9,7 +9,7 @@ export function Button({ text, onClick, type }: ButtonProps) {
 
   switch (type) {
     case 'primary':
-      buttonClass += `bg-gray-500 dark:bg-gray-50 text-white dark:text-gray-800 hover:bg-gray-600 dark:hover:bg-gray-300`;
+      buttonClass += `dark:bg-primary-light bg-primary-dark text-white dark:text-gray-800 hover:bg-gray-600 dark:hover:bg-gray-300`;
       break;
     case 'secondary':
       buttonClass += `border border-gray-400 hover:bg-gray-300 dark:text-gray-100 dark:hover:bg-gray-700`;

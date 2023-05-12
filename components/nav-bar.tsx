@@ -27,7 +27,7 @@ export function NavigationBar({ updateTheme, isDarkMode }: NavigationBarProps) {
       <div className="flex">
         <Link
           href={'/'}
-          className="flex flex-row space-x-2 items-center ml-48 mr-24"
+          className="flex flex-row space-x-2 items-center mr-24"
         >
           <HermesLogo />
           <p className="font-semibold text-gray-800 dark:text-slate-100 text-lg">Hermes</p>
@@ -44,7 +44,7 @@ export function NavigationBar({ updateTheme, isDarkMode }: NavigationBarProps) {
           ))}
         </div>
       </div>
-      <div className="flex mr-48 items-center">
+      <div className="flex items-center">
         <div
           className="mr-12 cursor-pointer"
           onClick={() => {
