@@ -18,7 +18,7 @@ export function NavigationBar() {
     },
   ];
 
-  const {theme, setTheme} = useTheme();
+  const { theme, setTheme } = useTheme();
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -60,11 +60,17 @@ export function NavigationBar() {
         </p>
       </div>
       {isDropdownOpen && (
-      <div className="fixed bg-primary-light dark:bg-primary-dark inset-0 p-4 text-primary-dark dark:text-primary-light z-50 flex justify-center items-center overflow-y-hidden">
+        <div className="fixed bg-primary-light dark:bg-primary-dark inset-0 p-4 text-primary-dark dark:text-primary-light z-50 flex flex-col items-center">
           <div className="absolute top-10 right-10">
             <CloseIcon onClick={onClose} />
           </div>
-          <ul className="w-2/3">
+          <ul className="w-2/3 m-auto ">
+            <div className="flex flex-row space-x-2 items-center m-auto w-1/2 justify-center mb-8">
+              <HermesLogo />
+              <p className="text-primary-dark dark:text-primary-light font-semibold text-xl ml-2">
+                Hermes
+              </p>
+            </div>
             {routes.map((route) => (
               <li key={route.name} className="text-2xl mb-10">
                 <Link href={route.href}>{route.name}</Link>
@@ -73,7 +79,7 @@ export function NavigationBar() {
             ))}
 
             <Link href={'/login'}>
-              <Button text="Login" type="primary" className='w-full' />
+              <Button text="Login" type="primary" className="w-full" />
             </Link>
           </ul>
         </div>
