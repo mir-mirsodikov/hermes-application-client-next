@@ -18,7 +18,7 @@ export function NavigationBar() {
     },
   ];
 
-  const { theme, setTheme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme();
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -89,10 +89,10 @@ export function NavigationBar() {
         <div
           className="md:mr-12 cursor-pointer"
           onClick={() => {
-            setTheme(theme == 'dark' ? 'light' : 'dark');
+            setTheme(resolvedTheme == 'dark' ? 'light' : 'dark');
           }}
         >
-          {theme == 'dark' ? <Moon /> : <Sun />}
+          {resolvedTheme == 'dark' ? <Moon /> : <Sun />}
         </div>
 
         <Link href={'/login'} className="hidden md:flex">
