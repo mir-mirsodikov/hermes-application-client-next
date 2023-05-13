@@ -4,13 +4,9 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { CloseIcon, HermesLogo, Moon, Sun } from './icons';
 import { Button } from './ui/button';
+import { useTheme } from 'next-themes';
 
-interface NavigationBarProps {
-  updateTheme: () => void;
-  isDarkMode: boolean;
-}
-
-export function NavigationBar({ updateTheme, isDarkMode }: NavigationBarProps) {
+export function NavigationBar() {
   const routes = [
     {
       name: 'Features',
@@ -21,6 +17,8 @@ export function NavigationBar({ updateTheme, isDarkMode }: NavigationBarProps) {
       href: '/docs',
     },
   ];
+
+  const {theme, setTheme} = useTheme();
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -62,7 +60,7 @@ export function NavigationBar({ updateTheme, isDarkMode }: NavigationBarProps) {
         </p>
       </div>
       {isDropdownOpen && (
-        <div className="fixed bg-primary-light dark:bg-primary-dark inset-0 p-4 text-primary-dark dark:text-primary-light z-50 flex justify-center items-center">
+      <div className="fixed bg-primary-light dark:bg-primary-dark inset-0 p-4 text-primary-dark dark:text-primary-light z-50 flex justify-center items-center overflow-y-hidden">
           <div className="absolute top-10 right-10">
             <CloseIcon onClick={onClose} />
           </div>
@@ -85,10 +83,10 @@ export function NavigationBar({ updateTheme, isDarkMode }: NavigationBarProps) {
         <div
           className="md:mr-12 cursor-pointer"
           onClick={() => {
-            updateTheme();
+            setTheme(theme == 'dark' ? 'light' : 'dark');
           }}
         >
-          {isDarkMode ? <Moon /> : <Sun />}
+          {theme == 'dark' ? <Moon /> : <Sun />}
         </div>
 
         <Link href={'/login'} className="hidden md:flex">
