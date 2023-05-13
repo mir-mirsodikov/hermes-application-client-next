@@ -3,7 +3,7 @@
 import { Footer } from '@/components/footer';
 import { NavigationBar } from '@/components/nav-bar';
 import { Montserrat } from 'next/font/google';
-import { useContext, useState } from 'react';
+import { useEffect, useState } from 'react';
 import './globals.css';
 
 const montserrat = Montserrat({ subsets: ['latin'] });
@@ -14,6 +14,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const [isDarkMode, setIsDarkMode] = useState(true);
+
+  useEffect(() => {
+    // get system theme preference
+    const systemPreference = window.matchMedia(
+      '(prefers-color-scheme: dark)',
+    ).matches;
+    setIsDarkMode(systemPreference);
+
+    // listen for changes on the theme preference
+    window
+      .matchMedia('(prefers-color-scheme: dark)')
+      .addEventListener('change', (e) => {
+        setIsDarkMode(e.matches);
+      });
+  }, []);
 
   return (
     <html lang="en" className={isDarkMode ? 'dark' : ''}>
@@ -28,7 +43,6 @@ export default function RootLayout({
             {...{
               updateTheme: () => {
                 setIsDarkMode(!isDarkMode);
-                console.log(isDarkMode);
               },
               isDarkMode: isDarkMode,
             }}
