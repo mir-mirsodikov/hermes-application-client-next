@@ -2,8 +2,9 @@ interface ButtonProps {
   text: string;
   onClick?: () => void;
   type: 'primary' | 'secondary';
+  className?: string;
 }
-export function Button({ text, onClick, type }: ButtonProps) {
+export function Button({ text, onClick, type, className }: ButtonProps) {
   let buttonClass =
     'transition ease-in-out duration-300 px-5 py-3 rounded-md font-medium ';
 
@@ -17,6 +18,8 @@ export function Button({ text, onClick, type }: ButtonProps) {
     default:
       break;
   }
+
+  buttonClass += ' ' + (className ?? '');
 
   return (
     <button className={buttonClass} onClick={onClick}>

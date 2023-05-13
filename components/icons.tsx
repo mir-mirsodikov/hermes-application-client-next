@@ -1,3 +1,8 @@
+interface IconProps {
+  className?: string;
+  onClick?: () => void;
+}
+
 export function HermesLogo() {
   return (
     <svg
@@ -6,9 +11,9 @@ export function HermesLogo() {
       xmlns="http://www.w3.org/2000/svg"
       className="w-12 h-12 dark:stroke-gray-100 stroke-gray-800"
     >
-      <path d="M9 6V8L19 3V1L9 6Z"  strokeWidth="0.7" />
-      <path d="M9 8V10L17 6V4L9 8Z"  strokeWidth="0.7" />
-      <path d="M9 10V12L15 9V7L9 10Z"  strokeWidth="0.7" />
+      <path d="M9 6V8L19 3V1L9 6Z" strokeWidth="0.7" />
+      <path d="M9 8V10L17 6V4L9 8Z" strokeWidth="0.7" />
+      <path d="M9 10V12L15 9V7L9 10Z" strokeWidth="0.7" />
       <path
         d="M9 6L5.5 7.5V13M5.5 15.5C6.86683 14.9142 7.63316 14.5858 9 14V12M5.5 15.5V13M5.5 15.5L1 17.5L2 14.5L5.5 13"
         strokeWidth="0.7"
@@ -54,6 +59,28 @@ export function Sun() {
         strokeLinecap="round"
         strokeLinejoin="round"
         d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
+      />
+    </svg>
+  );
+}
+
+export function CloseIcon({
+  onClick,
+}: IconProps) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth={1.5}
+      stroke="currentColor"
+      className="w-8 h-8 stroke-primary-dark dark:stroke-primary-light"
+      onClick={onClick}
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M6 18L18 6M6 6l12 12"
       />
     </svg>
   );

@@ -1,8 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import { useContext, useState } from 'react';
-import { HermesLogo, Moon, Sun } from './icons';
+import { useState } from 'react';
+import { CloseIcon, HermesLogo, Moon, Sun } from './icons';
 import { Button } from './ui/button';
 
 interface NavigationBarProps {
@@ -22,15 +22,21 @@ export function NavigationBar({ updateTheme, isDarkMode }: NavigationBarProps) {
     },
   ];
 
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  const onClose = () => {
+    setIsDropdownOpen(false);
+  };
+
   return (
     <div className="flex justify-between h-20 items-center">
-      <div className="flex">
-        <Link
-          href={'/'}
-          className="flex flex-row space-x-2 items-center mr-24"
-        >
+      {/* desktop navigation */}
+      <div className="md:flex hidden">
+        <Link href={'/'} className="flex flex-row space-x-2 items-center mr-24">
           <HermesLogo />
-          <p className="font-semibold text-gray-800 dark:text-slate-100 text-lg">Hermes</p>
+          <p className="font-semibold text-gray-800 dark:text-slate-100 text-lg">
+            Hermes
+          </p>
         </Link>
         <div className="flex items-center space-x-8">
           {routes.map((route) => (
@@ -44,9 +50,40 @@ export function NavigationBar({ updateTheme, isDarkMode }: NavigationBarProps) {
           ))}
         </div>
       </div>
+
+      {/* mobile navigation */}
+      <div
+        className="flex items-center md:hidden"
+        onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+      >
+        <HermesLogo />
+        <p className="text-primary-dark dark:text-primary-light font-semibold text-lg ml-2">
+          Menu
+        </p>
+      </div>
+      {isDropdownOpen && (
+        <div className="fixed bg-primary-light dark:bg-primary-dark inset-0 p-4 text-primary-dark dark:text-primary-light z-50 flex justify-center items-center">
+          <div className="absolute top-10 right-10">
+            <CloseIcon onClick={onClose} />
+          </div>
+          <ul className="w-2/3">
+            {routes.map((route) => (
+              <li key={route.name} className="text-2xl mb-10">
+                <Link href={route.href}>{route.name}</Link>
+                <hr className="border border-slate-300 w-full" />
+              </li>
+            ))}
+
+            <Link href={'/login'}>
+              <Button text="Login" type="primary" className='w-full' />
+            </Link>
+          </ul>
+        </div>
+      )}
+
       <div className="flex items-center">
         <div
-          className="mr-12 cursor-pointer"
+          className="md:mr-12 cursor-pointer"
           onClick={() => {
             updateTheme();
           }}
@@ -54,9 +91,7 @@ export function NavigationBar({ updateTheme, isDarkMode }: NavigationBarProps) {
           {isDarkMode ? <Moon /> : <Sun />}
         </div>
 
-        <Link
-          href={'/login'}
-        >
+        <Link href={'/login'} className="hidden md:flex">
           <Button text="Login" type="primary" />
         </Link>
       </div>
