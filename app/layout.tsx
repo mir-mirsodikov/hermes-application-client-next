@@ -30,6 +30,10 @@ export default function RootLayout({
       });
   }, []);
 
+  const updateTheme = () => {
+    setIsDarkMode(!isDarkMode);
+  };
+
   return (
     <html lang="en" className={isDarkMode ? 'dark' : ''}>
       <body
@@ -41,10 +45,8 @@ export default function RootLayout({
         <div className="container">
           <NavigationBar
             {...{
-              updateTheme: () => {
-                setIsDarkMode(!isDarkMode);
-              },
-              isDarkMode: isDarkMode,
+              updateTheme,
+              isDarkMode,
             }}
           />
         </div>
